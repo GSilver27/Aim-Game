@@ -108,12 +108,11 @@ h4 {
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 30%;
+  height: 60%;
   background: linear-gradient(118.38deg, #29323C -4.6%, #485563 200.44%);
   box-shadow: -8px -8px 20px #2A333D, 10px 7px 20px #475462;
   border-radius: 30px;
-  overflow: hidden;
 }
 
 .circle {
@@ -139,4 +138,25 @@ h4 {
 .leader-board span:last-of-type {
   color: #a15823;
   font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .board {
+    width: 50%;
+    height: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .board {
+    width: 70%;
+    height: 50%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .board {
+    width: 90%;
+    height: 50%;
+  }
 }

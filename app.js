@@ -6,8 +6,12 @@ const board = document.querySelector('#board');
 const leaderBoard = document.querySelector('.leader-board');
 const colors = ['blueviolet', 'blue', 'cyan', 'green', 'greenyellow', 'yellow', 'red'];
 let time = 0;
-let score = 0;
+let currentScore = 0;
 let timeMode = 0;
+let players = [
+    { name: "Vasyan", score: 58 },
+    { name: "Silver", score: 23 },
+];
 
 startBrn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -25,7 +29,7 @@ timeList.addEventListener('click', event => {
 
 board.addEventListener('click', event => {
     if (event.target.classList.contains('circle')) {
-        score++;
+        currentScore++;
         event.target.remove();
         createRandomCircle();
     }
@@ -84,20 +88,28 @@ function getRandomColor() {
     return colors[index];
 }
 
-function finishGame() {
-    timeEl.parentNode.classList.add('hide');
-    showScore();
-    showLeaderBoard();
+function addCurrentScore() {
+    players.push( { name: 'You', score: currentScore } );
 }
 
 function showScore() {
-    board.innerHTML = `<h1>Ваш счет:<br><span class="primary bigger">${score}</span></h1>`;
+    board.innerHTML = `<h1>Ваш счет:<br><span class="primary bigger">${currentScore}</span></h1>`;
 }
 
 function showLeaderBoard() {
     leaderBoard.style.opacity = '1';
-    leaderBoard.innerHTML = `Список лидеров за ${timeMode} секундый режим:<br>Silver: <span>52</span>
-    <br>Vasyan: <span>47</span><br>Вы: <span>${score}</span>`
+    leaderBoard.innerHTML = `Список лидеров за ${timeMode} секундый режим:<br>
+    ${players[0].name}: <span>${players[0].score}</span><br>
+    ${players[1].name}: <span>${players[1].score}</span><br>
+    ------------------------------------------<br>
+    ${players[2].name}: <span>${players[2].score}</span><br>`;
+}
+
+function finishGame() {
+    timeEl.parentNode.classList.add('hide');
+    addCurrentScore()
+    showScore();
+    showLeaderBoard();
 }
 
 // CHEAT
